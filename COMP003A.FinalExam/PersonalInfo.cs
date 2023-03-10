@@ -29,15 +29,19 @@ namespace COMP003A.FinalExam
         /// <param name="mailingAddress">String Input</param>
         /// <param name="emailAddress">String Input</param>
         /// <param name="phoneNumber">String Input</param>
-        public PersonalInfo(string firstName, string lastName, int birthYear, char gender, string mailingAddress, string emailAddress, string phoneNumber)
+        public PersonalInfo(string firstName, string lastName, int birthYear, char gender, string mailingAddress, string city, string state, string postal, string emailAddress, string phoneNumber)
         {
             FirstName = firstName;
             LastName = lastName;
             BirthYear = birthYear;
             Gender = gender;
             MailingAddress = mailingAddress;
+            City = city;
+            State = state;
+            Postal = postal;
             EmailAddress = emailAddress;
             PhoneNumber = phoneNumber;
+            
         }
         
         /******************************************************************************/
@@ -85,6 +89,27 @@ namespace COMP003A.FinalExam
         public string PhoneNumber
         { get; set; }
 
+
+        ///<summary>
+        ///Retrieve/Store Postal Code Info
+        ///</summary>
+        public string Postal
+        { get; set;}
+
+        ///<summary>
+        ///Retrieve/Store City Info
+        ///</summary>
+        public string City
+        { get; set;}
+
+
+        ///<summary>
+        ///Retrieve/Store State Info
+        ///</summary>
+        public string State
+        { get; set;}
+
+
         /******************************************************/
         //Method Implementation
         public virtual void PrintInfo()
@@ -93,7 +118,7 @@ namespace COMP003A.FinalExam
             Console.WriteLine($"Your last name is: {LastName}.");
             Console.WriteLine($"You are {BirthYear - DateTime.Now.Year} years old.");
             Console.WriteLine($"You are: {Gender}");
-            Console.WriteLine($"Your mailing address is: {MailingAddress}");
+            Console.WriteLine($"Your address is: {MailingAddress}, {City}, {State} {Postal}, United States.");
             Console.WriteLine($"Your email address is: {EmailAddress}");
             Console.WriteLine($"Your phone number is: {PhoneNumber}");
         }
