@@ -47,8 +47,31 @@ namespace COMP003A.FinalExam
             Applicant.PhoneNumber = Inputty("phone");
 
 
-
-
+            /**********************************************************************************************************/
+            //Applicant questions section
+            String[] qs = 
+            {
+                "Question #1: Why do you want to volunteer with Suprious Co.?",
+                "Question #2: Which department do you intend to volunteer with?",
+                "Question #3: What is your availability?",
+                "Question #4: What kind of skills do you have?",
+                "Question #5: Are you comfortable working with animals? Which ones?",
+                "Question #6: How often do you volunteer?",
+                "Question #7: What are your responsibilities when volunteering?",
+                "Question #8: Do you have a valid driver's license and a clean driving record?",
+                "Question #9: Would you be willing to participate in a vanpool?",
+                "Question #10: By proceeding with this application, you consent to a background check. Is there anything we should know?"
+            };
+            Console.WriteLine("\n\nApplication Questions:\n-------------------------");
+            
+            foreach(var q in qs)
+            {
+                Console.WriteLine(q);
+                Console.Write("Your answer: ");
+                string answer = Inputty("default");
+                Applicant.Questions.Add(answer);
+            }
+            
 
 
 

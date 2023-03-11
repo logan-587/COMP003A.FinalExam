@@ -29,7 +29,7 @@ namespace COMP003A.FinalExam
         /// <param name="mailingAddress">String Input</param>
         /// <param name="emailAddress">String Input</param>
         /// <param name="phoneNumber">String Input</param>
-        public PersonalInfo(string firstName, string lastName, int birthYear, char gender, string mailingAddress, string city, string state, string postal, string emailAddress, string phoneNumber)
+        public PersonalInfo(string firstName, string lastName, int birthYear, char gender, string mailingAddress, string city, string state, string postal, string emailAddress, string phoneNumber, List<string> questions)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -41,7 +41,7 @@ namespace COMP003A.FinalExam
             Postal = postal;
             EmailAddress = emailAddress;
             PhoneNumber = phoneNumber;
-            
+            Questions = questions;
         }
         
         /******************************************************************************/
@@ -107,6 +107,9 @@ namespace COMP003A.FinalExam
         ///Retrieve/Store State Info
         ///</summary>
         public string State
+        { get; set;}
+
+        public List<string> Questions
         { get; set;}
 
 
