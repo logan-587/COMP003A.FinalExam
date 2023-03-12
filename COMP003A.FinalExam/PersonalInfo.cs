@@ -29,7 +29,7 @@ namespace COMP003A.FinalExam
         /// <param name="mailingAddress">String Input</param>
         /// <param name="emailAddress">String Input</param>
         /// <param name="phoneNumber">String Input</param>
-        public PersonalInfo(string firstName, string lastName, int birthYear, char gender, string mailingAddress, string city, string state, string postal, string emailAddress, string phoneNumber, List<string> questions)
+        public PersonalInfo(string firstName, string lastName, int birthYear, string gender, string mailingAddress, string city, string state, string postal, string emailAddress, string phoneNumber)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -41,7 +41,6 @@ namespace COMP003A.FinalExam
             Postal = postal;
             EmailAddress = emailAddress;
             PhoneNumber = phoneNumber;
-            Questions = questions;
         }
         
         /******************************************************************************/
@@ -68,7 +67,7 @@ namespace COMP003A.FinalExam
         /// <summary>
         /// Retrieve/Store Gender
         /// </summary>
-        public char Gender
+        public string Gender
         { get; set; }
 
         /// <summary>
@@ -109,9 +108,6 @@ namespace COMP003A.FinalExam
         public string State
         { get; set;}
 
-        public List<string> Questions
-        { get; set;}
-
 
         /******************************************************/
         //Method Implementation
@@ -119,7 +115,7 @@ namespace COMP003A.FinalExam
         {
             Console.WriteLine($"Your first name is: {FirstName}.");
             Console.WriteLine($"Your last name is: {LastName}.");
-            Console.WriteLine($"You are {BirthYear - DateTime.Now.Year} years old.");
+            Console.WriteLine($"You are {DateTime.Now.Year - BirthYear} years old.");
             Console.WriteLine($"You are: {Gender}");
             Console.WriteLine($"Your address is: {MailingAddress}, {City}, {State} {Postal}, United States.");
             Console.WriteLine($"Your email address is: {EmailAddress}");
