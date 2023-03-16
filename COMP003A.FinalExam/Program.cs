@@ -114,10 +114,14 @@ namespace COMP003A.FinalExam
                 switch(type)
                 {
                     case "email":
-                        string badChars = @"\|!#$%&/()=?*+»«£§€{};'<>_,";
+                        string badChars = @"\|!#$%&/( )=?*+»«£§€{};'<>_,";
                         foreach(var item in badChars) // tests if the inputted string has any of the bad characters
                         {
                             if ((tempVar.Contains(item)) || !NullTest(tempVar))
+                            {
+                                z++;
+                            }
+                            if(!(tempVar.Contains("@")) || !(tempVar.Contains(".")))
                             {
                                 z++;
                             }
@@ -127,7 +131,7 @@ namespace COMP003A.FinalExam
 
 
                     case "name":
-                        badChars = @"1234567890\|!#$%&/().=?*+»«@£§€{}-;'<>_,";
+                        badChars = @"1234567890\ |!#$%&/().=?*+»«@£§€{}-;'<>_,";
                         foreach (var item in badChars)
                         {
                             if ((tempVar.Contains(item)))
@@ -143,22 +147,20 @@ namespace COMP003A.FinalExam
 
 
                     case "phone":
-                       // tempVar = Console.ReadLine();
-                        badChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRUTUVWXYZ\|!#$%&/.=?+»«@£§€{};'<>_,";
-                        foreach (var item in badChars)
+                        if(!ConvertTest(tempVar, "int"))
                         {
-                            if ((tempVar.Contains(item)))
-                            {
-                                z++;
-                            }
-
+                            z++;
+                        }
+                        if(tempVar.Length > 12)
+                        {
+                            z++;
                         }
                         break;
 
                     case "state": //checks inputted state against list of states
                         int position = 0;
                         List<string> stateAb = new List<string> {"DNE123", "AI", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY", "DC", "GU", "MH", "MP", "PR", "VI"};
-                        position = stateAb.IndexOf(tempVar);
+                        position = stateAb.IndexOf(tempVar.ToUpper());
                         if(position > 0)
                         {
                             realVar = stateAb[position];
@@ -182,7 +184,8 @@ namespace COMP003A.FinalExam
                         break;
 
                     case "gender":
-                        badChars = @"abcdefghijklmnopqrstuvwxyzABCDEHIJKLPQRSTUVWXYZ1234567890\|!#$%&/().=?*+»«@£§€{}-;'<>_,";
+                        badChars = @"ABCDEHIJKLPQRSTUVWXYZ1234567890\ |!#$%&/().=?*+»«@£§€{}-;'<>_,";
+                        tempVar = tempVar.ToUpper();
                         if(!ConvertTest(tempVar,"char"))
                         {
                             z++;
@@ -224,15 +227,9 @@ namespace COMP003A.FinalExam
 
 
                     default:
-                      //  tempVar = Console.ReadLine();
-                        badChars = @"\|$%&/()@=*+»«£§€{};'<>";
-                        foreach (var item in badChars)
+                        if(!NullTest(tempVar))
                         {
-                            if ((tempVar.Contains(item)) || !NullTest(tempVar))
-                            {
-                                z++;
-                            }
-                           
+                            z++;
                         }
                         break;
                 
@@ -265,7 +262,7 @@ namespace COMP003A.FinalExam
         ///Dual purpose - prevents null
         ///</summary>
         ///<param name="intake">String input to test against</param>
-        ///<param name="type">String input for type (int, char; string to check against null)</param>
+        ///<param name="type">String input for type (int, char)</param>
         ///<returns>Boolean: True (can convert) False (cannot convert)</returns>
         static bool ConvertTest(string intake, string type)
         {
@@ -281,9 +278,6 @@ namespace COMP003A.FinalExam
                     case "char":
                         Convert.ToChar(intake);
                         break;
-
-                    case "string":
-                        break;
                 }
 
             }
@@ -291,13 +285,17 @@ namespace COMP003A.FinalExam
             {
                 end = false;
             }
-
-            if(type == "string")
+            catch (System.OverflowException)
             {
-               if(intake == null)
-               {
-                end = false;
-               } 
+                try
+                {
+                    Convert.ToInt64(intake);
+                }
+                catch(System.OverflowException)
+                {
+                    Console.WriteLine("Put in a smaller number");
+                    end = false;
+                }
             }
 
             return end;

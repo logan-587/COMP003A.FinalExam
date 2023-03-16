@@ -117,7 +117,7 @@ namespace COMP003A.FinalExam
             Console.WriteLine($"Your last name is: {LastName}.");
             Console.WriteLine($"You are {DateTime.Now.Year - BirthYear} years old.");
             Console.WriteLine($"You are: {Gender}");
-            Console.WriteLine($"Your address is: {MailingAddress}, {City}, {State} {Postal}, United States.");
+            Console.WriteLine($"Your address is: {MailingAddress}, {City}, {State.ToUpper()} {Postal}, United States.");
             Console.WriteLine($"Your email address is: {EmailAddress}");
             Console.WriteLine($"Your phone number is: {PhoneNumber}");
         }
