@@ -117,7 +117,7 @@ namespace COMP003A.FinalExam
                         string badChars = @"\|!#$%&/()=?*+»«£§€{};'<>_,";
                         foreach(var item in badChars) // tests if the inputted string has any of the bad characters
                         {
-                            if ((tempVar.Contains(item)) || !ConvertTest(tempVar, "string"))
+                            if ((tempVar.Contains(item)) || !NullTest(tempVar))
                             {
                                 z++;
                             }
@@ -135,7 +135,7 @@ namespace COMP003A.FinalExam
                                 z++;
                             }                           
                         }
-                        if(!ConvertTest(tempVar, "string"))
+                        if(!NullTest(tempVar))
                         {
                             z++;
                         }
@@ -228,7 +228,7 @@ namespace COMP003A.FinalExam
                         badChars = @"\|$%&/()@=*+»«£§€{};'<>";
                         foreach (var item in badChars)
                         {
-                            if ((tempVar.Contains(item)) || !ConvertTest(tempVar, "string"))
+                            if ((tempVar.Contains(item)) || !NullTest(tempVar))
                             {
                                 z++;
                             }
@@ -246,7 +246,7 @@ namespace COMP003A.FinalExam
                 else
                 {
                      Console.Write("\nSorry, try again: ");
-                 }
+                }
                 
 
                 
@@ -275,16 +275,15 @@ namespace COMP003A.FinalExam
                 switch (type)
                 {
                     case "int":
-                    Convert.ToInt32(intake);
-                    break;
+                        Convert.ToInt32(intake);
+                        break;
 
                     case "char":
-                    Convert.ToChar(intake);
-                    break;
+                        Convert.ToChar(intake);
+                        break;
 
                     case "string":
-                    if(intake == null) {end = false;}
-                    break;
+                        break;
                 }
 
             }
@@ -293,7 +292,33 @@ namespace COMP003A.FinalExam
                 end = false;
             }
 
+            if(type == "string")
+            {
+               if(intake == null)
+               {
+                end = false;
+               } 
+            }
+
             return end;
+        }
+
+
+        ///<summary>
+        ///<checks for null values
+        ///</summary>
+        ///<param name="intake">string intake to check</param>
+        ///<return>returns bool value (true means okay)</returns>
+        static bool NullTest(string intake)
+        {
+            if(intake == null || intake == "")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
 
